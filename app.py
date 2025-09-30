@@ -2,6 +2,7 @@ from flask import Flask, render_template, redirect, url_for, session
 from controllers.auth_controller import auth_bp
 from controllers.kuesioner_controller import kuesioner_bp
 from controllers.stakeholder_controller import stakeholder_bp
+
 app = Flask(__name__)
 app.secret_key = "rahasia_super_aman"
 
@@ -19,5 +20,9 @@ def home():
 def page_not_found(e):
     return render_template("404.html"), 404
 
+# ✅ untuk server WSGI (PythonAnywhere)
+application = app
+
+# ✅ tetap bisa jalan di lokal
 if __name__ == "__main__":
     app.run(debug=True)
