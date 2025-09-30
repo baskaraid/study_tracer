@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tracer Study Admin</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #f5f7fa;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      width: 220px;
+      background-color: #1e2a38;
+      color: white;
+      padding-top: 20px;
+      overflow-y: auto;
+      transition: all 0.3s;
+    }
+
+    .sidebar a {
+      display: block;
+      padding: 10px 20px;
+      color: #cfd8dc;
+      text-decoration: none;
+      margin-bottom: 5px;
+      border-radius: 6px;
+    }
+
+    .sidebar a:hover,
+    .sidebar a.active {
+      background-color: #0d6efd;
+      color: white;
+    }
+
+    /* Header Horizontal */
+    .navbar-custom {
+      margin-left: 220px;
+      z-index: 100;
+      background-color: #1e2a38 !important;
+      border-bottom: 1px solid #0d6efd;
+    }
+
+    .navbar-custom .navbar-brand,
+    .navbar-custom span,
+    .navbar-custom a {
+      color: #cfd8dc !important;
+    }
+
+    .navbar-custom a.btn-outline-light {
+      border-color: #74ebd5;
+      color: #74ebd5;
+    }
+
+    .navbar-custom a.btn-outline-light:hover {
+      background-color: #74ebd5;
+      color: #1e2a38;
+    }
+
+    /* Konten */
+    .content {
+      margin-left: 220px;
+      padding: 20px;
+      transition: all 0.3s;
+      margin-top: 70px; /* space for navbar */
+    }
+
+    /* Sticky header tabel */
+    .table-responsive {
+      max-height: 70vh;
+      overflow-y: auto;
+    }
+
+    .table thead th {
+      position: sticky;
+      top: 0;
+      background: #212529;
+      color: white;
+      z-index: 2;
+    }
+
+    /* Author Floating */
+    .author-floating {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 60px;
+      height: 60px;
+      background-color: #1e2a38;
+      color: #fff;
+      border-radius: 50%;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: bold;
+      font-size: 1.2rem;
+      cursor: pointer;
+      z-index: 1000;
+      transition: all 0.3s;
+      overflow: hidden;
+    }
+
+    .author-floating.expanded {
+      width: 220px;
+      height: auto;
+      border-radius: 12px;
+      padding: 15px;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      background-color: #1e2a38;
+    }
+
+    .author-floating img {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      border: 2px solid #74ebd5;
+      margin-bottom: 8px;
+    }
+
+    .author-floating a {
+      color: #74ebd5;
+      text-decoration: none;
+      font-size: 0.85rem;
+    }
+
+    .author-floating:hover {
+      box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+    }
+
+    /* Responsif HP */
+    @media (max-width: 768px) {
+      .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+      }
+      .content {
+        margin-left: 0;
+        margin-top: 140px; /* header + sidebar */
+      }
+      .navbar-custom {
+        margin-left: 0;
+      }
+      .author-floating.expanded {
+        width: 180px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Sidebar -->
+<div class="sidebar">
+  <h5 class="text-center">TRACER STUDY<br>BHM MADIUN</h5>
+  <hr style="border-color: #455a64;">
+  <a href="{{ url_for('kuesioner.dashboard') }}" class="{% if active_menu == 'dashboard' %}active{% endif %}">📊 Dashboard</a>
+  <a href="{{ url_for('kuesioner.data_responden') }}" class="{% if active_menu == 'responden' %}active{% endif %}">👤 Data Responden</a>
+  <a href="{{ url_for('stakeholder.data_responden') }}" class="{% if active_menu == 'responden' %}active{% endif %}">👤 Data StakeHolder</a>
+  <a href="{{ url_for('kuesioner.sebaran') }}" class="{% if active_menu == 'unggah' %}active{% endif %}">📈 Statistik</a>
+  <a href="{{ url_for('kuesioner.unduh_data_page') }}" class="{% if active_menu == 'unduh' %}active{% endif %}">⬇️ Unduh Data</a>
+  <a href="" class="{% if active_menu == 'statistik' %}active{% endif %}">📈 Statistik</a>
+  <a href="" class="{% if active_menu == 'report' %}active{% endif %}">📑 Report</a>
+  <hr style="border-color: #455a64;">
+  <a href="" class="{% if active_menu == 'faq' %}active{% endif %}">❓ FAQ</a>
+  <a href="" class="{% if active_menu == 'panduan' %}active{% endif %}">ℹ️ Panduan Form</a>
+</div>
+
+<!-- Header Horizontal -->
+<nav class="navbar navbar-expand-lg navbar-custom fixed-top">
+  <div class="container-fluid">
+    <span class="navbar-brand mb-0 h1">Tracer Study BHM Madiun</span>
+    <div class="d-flex ms-auto align-items-center">
+      <span class="me-3 text-light">
+        {{ session['nama'] }} {{ session['role'] }}
+      </span>
+      <a href="{{ url_for('auth.logout') }}" class="btn btn-outline-light btn-sm">Logout</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Content -->
+<div class="content">
+  {% block content %}
+  {% endblock %}
+</div>
+
+<!-- Author Floating -->
+<div class="author-floating" id="authorFloating">
+  <span id="authorInitial">NB</span>
+  <div id="authorDetail" style="display: none;">
+    <img src="https://ui-avatars.com/api/?name=Narutama+Phinda+Baskara&background=74EBd5&color=fff&size=80" alt="Narutama Phinda Baskara">
+    <div>
+      <strong>Narutama Phinda Baskara</strong><br>
+      <a href="mailto:phindabaskara@gmail.com">phindabaskara@gmail.com</a>
+    </div>
+  </div>
+</div>
+
+<script>
+  const authorFloating = document.getElementById('authorFloating');
+  const authorDetail = document.getElementById('authorDetail');
+  const authorInitial = document.getElementById('authorInitial');
+
+  authorFloating.addEventListener('click', () => {
+    if(authorFloating.classList.contains('expanded')) {
+      authorFloating.classList.remove('expanded');
+      authorDetail.style.display = 'none';
+      authorInitial.style.display = 'flex';
+    } else {
+      authorFloating.classList.add('expanded');
+      authorDetail.style.display = 'block';
+      authorInitial.style.display = 'none';
+    }
+  });
+</script>
+
+</body>
+</html>

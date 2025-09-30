@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tracer Buttons</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body { background: #f4f6fb; font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; }
+    .btn-tracer { min-width: 220px; padding: 14px 20px; border-radius: 12px; box-shadow: 0 6px 18px rgba(22,38,84,0.06); }
+    .btn-icon { display:inline-flex; align-items:center; gap:10px; }
+    .container-center { min-height: 60vh; display:flex; align-items:center; justify-content:center; }
+    @media (max-width:576px){ .btn-tracer { width:100%; min-width:unset; } }
+  </style>
+</head>
+<body>
+  <div class="container container-center">
+    <div class="row g-3 align-items-center">
+      <div class="col-12 text-center mb-2">
+        <h4 class="mb-0">Menu Tracer</h4>
+        <small class="text-muted">Pilih jenis tracer yang ingin ditampilkan</small>
+      </div>
+
+      <div class="col-sm-6 d-grid">
+        <button id="btnAlumni" class="btn btn-primary btn-tracer btn-icon" aria-label="Tracer Studi Alumni">
+          <!-- SVG icon -->
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M12 12c2.761 0 5-2.239 5-5s-2.239-5-5-5-5 2.239-5 5 2.239 5 5 5z" fill="currentColor" opacity="0.9"/>
+            <path d="M3 21c0-3.866 3.582-7 9-7s9 3.134 9 7v1H3v-1z" fill="currentColor" opacity="0.9"/>
+          </svg>
+          <span>
+            Tracer Studi Alumni
+          </span>
+        </button>
+      </div>
+
+      <div class="col-sm-6 d-grid">
+        <button id="btnStakeholder" class="btn btn-outline-secondary btn-tracer btn-icon" aria-label="Tracer Pengguna Lulusan (StakeHolder)">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M3 6h18v2H3V6zM3 11h18v2H3v-2zM3 16h18v2H3v-2z" fill="currentColor" opacity="0.9"/>
+          </svg>
+          <span>
+            Tracer Pengguna Lulusan (StakeHolder)
+          </span>
+        </button>
+      </div>
+
+      <div class="col-12 text-center mt-2">
+        <div id="message" class="small text-muted">Klik tombol untuk melihat data.</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // contoh handler: ubah lokasi atau panggil API/modal sesuai kebutuhan
+    document.getElementById('btnAlumni').addEventListener('click', function(){
+      // arahkan ke rute /tracer/alumni atau tampilkan modal
+      window.location.href = '{{ url_for('kuesioner.isi') }}';
+    });
+
+    document.getElementById('btnStakeholder').addEventListener('click', function(){
+      // arahkan ke rute /tracer/stakeholder atau buka modal form
+      window.location.href = '{{ url_for('stakeholder.tracer_stakeholder') }}';
+    });
+  </script>
+</body>
+</html>

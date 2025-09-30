@@ -1,0 +1,1066 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-8">
+    <div class="card shadow-lg">
+      <div class="card-body">
+        <h2 class="card-title mb-3 text-center">Form Kuesioner - Pertanyaan</h2>
+        <p class="text-muted text-center">Jawab pertanyaan berikut sesuai keadaan Anda.</p>
+
+        <form method="post">
+          <div class="mb-3">
+            <label class="form-label">1. Jelaskan status Anda saat ini? (f8) <span class="text-danger">*</span></label>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="f8" id="f8_1" value="1" required>
+              <label class="form-check-label" for="f8_1">
+                Bekerja (full time / part time) (1)
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="f8" id="f8_2" value="2" required>
+              <label class="form-check-label" for="f8_2">
+                Belum memungkinkan bekerja (2)
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="f8" id="f8_3" value="3" required>
+              <label class="form-check-label" for="f8_3">
+                Wiraswasta (3)
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="f8" id="f8_4" value="4" required>
+              <label class="form-check-label" for="f8_4">
+                Melanjutkan Pendidikan (4)
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="f8" id="f8_5" value="5" required>
+              <label class="form-check-label" for="f8_5">
+                Tidak kerja tetapi sedang mencari kerja (5)
+              </label>
+            </div>
+          </div>
+          <!-- F502 -->
+          <div class="mb-3">
+            <label for="f502" class="form-label">
+              2. Dalam berapa bulan Anda mendapatkan pekerjaan pertama? (f502)
+            </label>
+            <input type="number" class="form-control" id="f502" name="f502" placeholder="Masukkan jumlah bulan">
+          </div>
+
+          <!-- F505 -->
+          <div class="mb-3">
+            <label for="f505" class="form-label">
+              3. Berapa rata-rata pendapatan Anda per bulan? (take home pay) (f505)
+            </label>
+            <input type="number" class="form-control" id="f505" name="f505" placeholder="Masukkan pendapatan per bulan">
+          </div>
+
+          <!-- F5a1 & F5a2 -->
+          <div class="mb-3">
+            <label class="form-label">
+              4. Dimana lokasi tempat Anda bekerja?
+              <span class="text-danger">(Isi jika memilih Bekerja / f8=1)</span>
+            </label>
+            <div class="row">
+              <!-- Provinsi -->
+              <div class="col-md-6 mb-2">
+                <label for="f5a1" class="form-label">Provinsi</label>
+                <select class="form-select" id="f5a1" name="f5a1">
+                  <option value="">-- Pilih Provinsi --</option>
+                  <option value="100000">Prov. Jambi</option>
+                  <option value="200000">Prov. Sulawesi Tenggara</option>
+                  <option value="210000">Prov. Maluku</option>
+                  <option value="320000">Prov. Papua Barat</option>
+                  <option value="330000">Prov. Sulawesi Barat</option>
+                  <option value="350000">Luar Negeri</option>
+                  <option value="300000">Prov. Gorontalo</option>
+                  <option value="180000">Prov. Sulawesi Tengah</option>
+                  <option value="190000">Prov. Sulawesi Selatan</option>
+                  <option value="270000">Prov. Maluku Utara</option>
+                  <option value="280000">Prov. Banten</option>
+                  <option value="170000">Prov. Sulawesi Utara</option>
+                  <option value="250000">Prov. Papua</option>
+                  <option value="260000">Prov. Bengkulu</option>
+                  <option value="240000">Prov. Nusa Tenggara Timur</option>
+                  <option value="110000">Prov. Sumatera Selatan</option>
+                  <option value="290000">Prov. Kepulauan Bangka Belitung</option>
+                  <option value="120000">Prov. Lampung</option>
+                  <option value="130000">Prov. Kalimantan Barat</option>
+                  <option value="340000">Prov. Kalimantan Utara</option>
+                  <option value="310000">Prov. Kepulauan Riau</option>
+                  <option value="160000">Prov. Kalimantan Timur</option>
+                  <option value="230000">Prov. Nusa Tenggara Barat</option>
+                  <option value="140000">Prov. Kalimantan Tengah</option>
+                  <option value="150000">Prov. Kalimantan Selatan</option>
+                  <option value="220000">Prov. Bali</option>
+                  <option value="10000">Prov. D.K.I. Jakarta</option>
+                  <option value="40000">Prov. D.I. Yogyakarta</option>
+                  <option value="60000">Prov. Aceh</option>
+                  <option value="20000">Prov. Jawa Barat</option>
+                  <option value="90000">Prov. Riau</option>
+                  <option value="30000">Prov. Jawa Tengah</option>
+                  <option value="50000">Prov. Jawa Timur</option>
+                  <option value="80000">Prov. Sumatera Barat</option>
+                  <option value="70000">Prov. Sumatera Utara</option>
+                </select>
+              </div>
+
+              <!-- Kota/Kabupaten -->
+              <div class="col-md-6 mb-2">
+                <label for="f5a2" class="form-label">Kota/Kabupaten (f5a2)</label>
+                <select class="form-select" id="f5a2" name="f5a2">
+                  {% include "kota.html" %}
+                </select>
+              </div>
+            </div>
+          </div>
+
+
+          <script>
+            document.addEventListener("DOMContentLoaded", function () {
+              const provinsiSelect = document.getElementById("f5a1");
+              const kotaSelect = document.getElementById("f5a2");
+
+              // simpan semua optgroup asli
+              const allGroups = Array.from(kotaSelect.querySelectorAll("optgroup"));
+
+              provinsiSelect.addEventListener("change", function () {
+                const provId = this.value;
+
+                // reset isi dropdown kota
+                kotaSelect.innerHTML = '<option value="">-- Pilih Kota/Kabupaten --</option>';
+
+                if (provId) {
+                  // cari optgroup sesuai provinsi
+                  allGroups.forEach(group => {
+                    if (group.dataset.prov === provId) {
+                      kotaSelect.appendChild(group.cloneNode(true));
+                    }
+                  });
+                }
+              });
+            });
+          </script>
+
+
+          <!-- 5. Jenis perusahaan/instansi tempat bekerja -->
+          <div class="mb-3">
+            <label class="form-label">
+              5. Apa jenis perusahaan/intansi/institusi tempat anda bekerja sekarang? (f1101)
+              <span class="text-danger">(Jika Memilih Bekerja / Jika f8 = 1)</span>
+            </label>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="f1101" id="f1101_1" value="1" required>
+              <label class="form-check-label" for="f1101_1">Instansi pemerintah (1)</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="f1101" id="f1101_2" value="2">
+              <label class="form-check-label" for="f1101_2">Organisasi non-profit/Lembaga Swadaya Masyarakat
+                (2)</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="f1101" id="f1101_3" value="3">
+              <label class="form-check-label" for="f1101_3">Perusahaan swasta (3)</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="f1101" id="f1101_4" value="4">
+              <label class="form-check-label" for="f1101_4">Wiraswasta/perusahaan sendiri (4)</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="f1101" id="f1101_6" value="6">
+              <label class="form-check-label" for="f1101_6">BUMN/BUMD (6)</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="f1101" id="f1101_7" value="7">
+              <label class="form-check-label" for="f1101_7">Institusi/Organisasi Multilateral (7)</label>
+            </div>
+            <div class="form-check d-flex align-items-center">
+              <input class="form-check-input me-2" type="radio" name="f1101" id="f1101_5" value="5">
+              <label class="form-check-label me-2" for="f1101_5">Lainnya, tuliskan (5)</label>
+              <input type="text" class="form-control w-auto" id="f1102" name="f1102" placeholder="Tuliskan lainnya"
+                disabled>
+            </div>
+            <div class="invalid-feedback">Harap pilih jenis perusahaan.</div>
+            <small class="text-danger">* (f1102 Wajib diisi jika memilih f1101 = 5)</small>
+          </div>
+
+          <!-- 6. Nama perusahaan -->
+          <div class="mb-3">
+            <label for="f5b" class="form-label">
+              6. Apa nama perusahaan/kantor tempat Anda bekerja? (f5b)
+              <span class="text-danger">(Jika Memilih Bekerja / Jika f8 = 1)</span>
+            </label>
+            <input type="text" class="form-control" id="f5b" name="f5b" placeholder="Masukkan nama perusahaan/kantor">
+          </div>
+
+          <!-- 7. Jabatan wiraswasta -->
+          <div class="mb-3" id="group_f5c" style="display:none;">
+            <label for="f5c" class="form-label">
+              7. Bila berwiraswasta, apa posisi/jabatan Anda saat ini? (f5c)
+              <span class="text-danger">(Wajib diisi jika memilih Wiraswasta / Jika f8 = 3)</span>
+            </label>
+            <select class="form-select" id="f5c" name="f5c">
+              <option value="">-- Pilih Posisi/Jabatan --</option>
+              <option value="1">Founder</option>
+              <option value="2">Co-Founder</option>
+              <option value="3">Staff</option>
+              <option value="4">Freelance</option>
+            </select>
+            <div class="invalid-feedback">Harap pilih posisi/jabatan Anda.</div>
+          </div>
+
+          <!-- 8. Tingkat tempat kerja -->
+          <div class="mb-3" id="group_f5d">
+            <label for="f5d" class="form-label">
+              8. Apa tingkat tempat kerja Anda? (f5d)
+              <span class="text-danger">(Jika Memilih Bekerja / Jika f8 = 1) & (Wajib diisi Jika Memilih Wiraswasta /
+                Jika f8 = 3)</span>
+            </label>
+            <select class="form-select" id="f5d" name="f5d">
+              <option value="">-- Pilih Tingkat Tempat Kerja --</option>
+              <option value="1">Lokal/wilayah/wiraswasta tidak berbadan hukum</option>
+              <option value="2">Nasional/wiraswasta berbadan hukum</option>
+              <option value="3">Multinasional/Internasional</option>
+            </select>
+            <div class="invalid-feedback">Harap pilih tingkat tempat kerja.</div>
+          </div>
+          <script>
+            document.addEventListener("DOMContentLoaded", function () {
+              const f1101Radios = document.querySelectorAll("input[name='f1101']");
+              const f1102 = document.getElementById("f1102");
+              const f5cGroup = document.getElementById("group_f5c");
+              const f5c = document.getElementById("f5c");
+              const f5d = document.getElementById("f5d");
+
+              // Saat user pilih jenis perusahaan
+              f1101Radios.forEach(radio => {
+                radio.addEventListener("change", function () {
+                  if (this.value === "5") {
+                    f1102.disabled = false;
+                    f1102.required = true;
+                  } else {
+                    f1102.disabled = true;
+                    f1102.required = false;
+                    f1102.value = "";
+                  }
+
+                  if (this.value === "4") {
+                    f5cGroup.style.display = "block";
+                    f5c.required = true;
+                    f5d.required = true;
+                  } else {
+                    f5cGroup.style.display = "none";
+                    f5c.required = false;
+                    f5c.value = "";
+                    f5d.required = false;
+                  }
+                });
+              });
+
+              // Validasi Bootstrap saat submit
+              const form = document.querySelector("form");
+              form.addEventListener("submit", function (e) {
+                if (!form.checkValidity()) {
+                  e.preventDefault();
+                  e.stopPropagation();
+                }
+                form.classList.add("was-validated");
+              });
+            });
+          </script>
+
+          <!-- 9. Pertanyaan studi lanjut -->
+          <div class="mb-3">
+            <label class="form-label">9. Pertanyaan studi lanjut</label>
+
+            <!-- Sumber biaya -->
+            <div class="mb-2">
+              <label for="f18a" class="form-label">
+                Sumber biaya (f18a) <span class="text-danger">*</span>
+                <small class="text-danger">(Muncul jika f8 = 4)</small>
+              </label>
+              <select class="form-select" id="f18a" name="f18a">
+                <option value="">Silahkan Pilih</option>
+                <option value="1">Biaya Sendiri</option>
+                <option value="2">Beasiswa</option>
+              </select>
+            </div>
+
+            <!-- Grup field lainnya -->
+            <div id="group_f18" style="display: none;">
+              <div class="row">
+                <!-- Perguruan Tinggi -->
+                <div class="col-md-6 mb-2">
+                  <label for="f18b" class="form-label">
+                    Perguruan Tinggi (f18b) <span class="text-danger">*</span>
+                  </label>
+                  <input type="text" class="form-control" id="f18b" name="f18b"
+                    placeholder="Masukkan nama perguruan tinggi" value="0">
+                </div>
+
+                <!-- Program Studi -->
+                <div class="col-md-6 mb-2">
+                  <label for="f18c" class="form-label">
+                    Program Studi (f18c) <span class="text-danger">*</span>
+                  </label>
+                  <input type="text" class="form-control" id="f18c" name="f18c" placeholder="Masukkan program studi"
+                    value="0">
+                </div>
+              </div>
+
+              <div class="row">
+                <!-- Tanggal Masuk -->
+                <div class="col-md-6 mb-2">
+                  <label for="f18d" class="form-label">
+                    Tanggal Masuk (f18d) <span class="text-danger">*</span>
+                  </label>
+                  <input type="date" class="form-control" id="f18d" name="f18d" value="0">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <script>
+            document.addEventListener("DOMContentLoaded", function () {
+              const f8Radios = document.querySelectorAll("input[name='f8']");
+              const f18a = document.getElementById("f18a");
+              const groupF18 = document.getElementById("group_f18");
+              const f18b = document.getElementById("f18b");
+              const f18c = document.getElementById("f18c");
+              const f18d = document.getElementById("f18d");
+
+              function resetF18() {
+                // Sembunyikan field dan atur default ke "0"
+                groupF18.style.display = "none";
+
+                f18a.value = "0";
+                f18a.required = false;
+
+                [f18b, f18c, f18d].forEach(el => {
+                  el.required = false;
+                  el.value = "0";
+                });
+              }
+
+              // Default reset saat halaman load
+              resetF18();
+
+              // Perubahan pada radio f8
+              f8Radios.forEach(radio => {
+                radio.addEventListener("change", function () {
+                  if (this.value === "4") {
+                    f18a.required = true;
+                  } else {
+                    resetF18();
+                  }
+                });
+              });
+
+              // Perubahan pada select f18a
+              f18a.addEventListener("change", function () {
+                if (this.value !== "") {
+                  groupF18.style.display = "block";
+                  [f18b, f18c, f18d].forEach(el => el.required = true);
+                } else {
+                  groupF18.style.display = "none";
+                  [f18b, f18c, f18d].forEach(el => {
+                    el.required = false;
+                    el.value = "0";
+                  });
+                }
+              });
+            });
+          </script>
+
+
+          <!-- f1201 -->
+          <div class="mb-3">
+            <label class="form-label">
+              10. Sebutkan sumber dana dalam pembiayaan kuliah?
+              <span class="text-danger">(Wajib diisi)</span>
+            </label>
+            <div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="f1201" id="f1201_1" value="1" required>
+                <label class="form-check-label" for="f1201_1">Biaya Sendiri/Keluarga (1)</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="f1201" id="f1201_2" value="2">
+                <label class="form-check-label" for="f1201_2">Beasiswa ADIK (2)</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="f1201" id="f1201_3" value="3">
+                <label class="form-check-label" for="f1201_3">Beasiswa BIDIKMISI (3)</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="f1201" id="f1201_4" value="4">
+                <label class="form-check-label" for="f1201_4">Beasiswa PPA (4)</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="f1201" id="f1201_5" value="5">
+                <label class="form-check-label" for="f1201_5">Beasiswa AFIRMASI (5)</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="f1201" id="f1201_6" value="6">
+                <label class="form-check-label" for="f1201_6">Beasiswa Perusahaan/Swasta (6)</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="f1201" id="f1201_7" value="7">
+                <label class="form-check-label" for="f1201_7">Lainnya, tuliskan (7)</label>
+              </div>
+            </div>
+
+            <!-- Input text hanya muncul jika pilih Lainnya (7) -->
+            <div id="f1202_group" class="mt-2" style="display:none;">
+              <input type="text" class="form-control" id="f1202" name="f1202"
+                placeholder="Tuliskan sumber dana lainnya">
+              <small class="text-danger">* Wajib diisi jika memilih Lainnya</small>
+            </div>
+          </div>
+
+          <script>
+            document.addEventListener('DOMContentLoaded', () => {
+              const f1201Radios = document.querySelectorAll('input[name="f1201"]');
+              const f1202Group = document.getElementById('f1202_group');
+              const f1202Input = document.getElementById('f1202');
+
+              // Show/hide input f1202 saat pilih "Lainnya"
+              f1201Radios.forEach(radio => {
+                radio.addEventListener('change', () => {
+                  if (radio.value === "7" && radio.checked) {
+                    f1202Group.style.display = 'block';
+                    f1202Input.required = true;
+                  } else if (radio.checked) {
+                    f1202Group.style.display = 'none';
+                    f1202Input.required = false;
+                    f1202Input.value = ''; // Clear input jika bukan "Lainnya"
+                  }
+                });
+              });
+
+              // Tangkap event submit form (asumsi form id="myForm")
+              const form = document.querySelector('form'); // pastikan ada form di sekitarnya
+
+              form.addEventListener('submit', (e) => {
+                const checkedValue = [...f1201Radios].find(r => r.checked)?.value;
+
+                // Jika pilih "Lainnya" dan f1202 kosong, set ke "0"
+                if (checkedValue === "7" && f1202Input.value.trim() === "") {
+                  f1202Input.value = "0";
+                }
+
+                // Jika bukan "Lainnya", pastikan f1202 tetap "0"
+                if (checkedValue !== "7") {
+                  f1202Input.value = "0";
+                }
+              });
+            });
+          </script>
+
+
+          <!-- f14 -->
+          <div class="mb-3">
+            <label class="form-label">
+              11. Seberapa erat hubungan bidang studi dengan pekerjaan Anda?
+              <span class="text-danger">(Wajib diisi jika f8 = 1)</span>
+            </label>
+            <div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="f14" id="f14_1" value="1">
+                <label class="form-check-label" for="f14_1">Sangat Erat (1)</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="f14" id="f14_2" value="2">
+                <label class="form-check-label" for="f14_2">Erat (2)</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="f14" id="f14_3" value="3">
+                <label class="form-check-label" for="f14_3">Cukup Erat (3)</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="f14" id="f14_4" value="4">
+                <label class="form-check-label" for="f14_4">Kurang Erat (4)</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="f14" id="f14_5" value="5">
+                <label class="form-check-label" for="f14_5">Tidak Sama Sekali (5)</label>
+              </div>
+            </div>
+          </div>
+
+          <!-- f15 -->
+          <div class="mb-3">
+            <label class="form-label">
+              12. Tingkat pendidikan apa yang paling tepat/sesuai untuk pekerjaan anda saat ini?
+              <span class="text-danger">(Wajib diisi jika f8 = 1)</span>
+            </label>
+            <div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="f15" id="f15_1" value="1">
+                <label class="form-check-label" for="f15_1">Setingkat Lebih Tinggi (1)</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="f15" id="f15_2" value="2">
+                <label class="form-check-label" for="f15_2">Tingkat yang Sama (2)</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="f15" id="f15_3" value="3">
+                <label class="form-check-label" for="f15_3">Setingkat Lebih Rendah (3)</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="f15" id="f15_4" value="4">
+                <label class="form-check-label" for="f15_4">Tidak Perlu Pendidikan Tinggi (4)</label>
+              </div>
+            </div>
+          </div>
+          <script>
+            document.addEventListener("DOMContentLoaded", function () {
+              const radios = document.querySelectorAll("input[name='f1201']");
+              const f1202_group = document.getElementById("f1202_group");
+              const f1202_input = document.getElementById("f1202");
+
+              radios.forEach(radio => {
+                radio.addEventListener("change", function () {
+                  if (this.value === "7") {
+                    f1202_group.style.display = "block";
+                    f1202_input.required = true;
+                  } else {
+                    f1202_group.style.display = "none";
+                    f1202_input.required = false;
+                    f1202_input.value = "";
+                  }
+                });
+              });
+            });
+          </script>
+
+          <h5>13. Kompetensi</h5>
+          <p>
+            Pada saat lulus (A) dan saat ini (B) pada tingkat mana kompetensi di bawah ini anda kuasai / diperlukan?
+            <span class="text-danger">(Wajib diisi)</span>
+          </p>
+
+          <div class="table-responsive">
+            <table class="table table-bordered table-sm align-middle text-center">
+              <thead class="table-light">
+                <tr>
+                  <th rowspan="2" class="align-middle">Kompetensi</th>
+                  <th colspan="5" class="text-nowrap">A. Saat Lulus</th>
+                  <th colspan="5" class="text-nowrap">B. Saat Ini</th>
+                </tr>
+                <tr>
+                  <th>1<br><small>Sangat Rendah</small></th>
+                  <th>2</th>
+                  <th>3</th>
+                  <th>4</th>
+                  <th>5<br><small>Sangat Tinggi</small></th>
+                  <th>1<br><small>Sangat Rendah</small></th>
+                  <th>2</th>
+                  <th>3</th>
+                  <th>4</th>
+                  <th>5<br><small>Sangat Tinggi</small></th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Etika -->
+                <tr>
+                  <td class="text-start">Etika (f1761/f1762)</td>
+                  {% for i in range(1,6) %}
+                  <td><input type="radio" class="form-check-input" name="f1761" value="{{ i }}" required></td>
+                  {% endfor %}
+                  {% for i in range(1,6) %}
+                  <td><input type="radio" class="form-check-input" name="f1762" value="{{ i }}" required></td>
+                  {% endfor %}
+                </tr>
+
+                <!-- Keahlian -->
+                <tr>
+                  <td class="text-start">Keahlian berdasarkan bidang ilmu (f1763/f1764)</td>
+                  {% for i in range(1,6) %}
+                  <td><input type="radio" class="form-check-input" name="f1763" value="{{ i }}" required></td>
+                  {% endfor %}
+                  {% for i in range(1,6) %}
+                  <td><input type="radio" class="form-check-input" name="f1764" value="{{ i }}" required></td>
+                  {% endfor %}
+                </tr>
+
+                <!-- Bahasa Inggris -->
+                <tr>
+                  <td class="text-start">Bahasa Inggris (f1765/f1766)</td>
+                  {% for i in range(1,6) %}
+                  <td><input type="radio" class="form-check-input" name="f1765" value="{{ i }}" required></td>
+                  {% endfor %}
+                  {% for i in range(1,6) %}
+                  <td><input type="radio" class="form-check-input" name="f1766" value="{{ i }}" required></td>
+                  {% endfor %}
+                </tr>
+
+                <!-- Teknologi Informasi -->
+                <tr>
+                  <td class="text-start">Penggunaan Teknologi Informasi (f1767/f1768)</td>
+                  {% for i in range(1,6) %}
+                  <td><input type="radio" class="form-check-input" name="f1767" value="{{ i }}" required></td>
+                  {% endfor %}
+                  {% for i in range(1,6) %}
+                  <td><input type="radio" class="form-check-input" name="f1768" value="{{ i }}" required></td>
+                  {% endfor %}
+                </tr>
+
+                <!-- Komunikasi -->
+                <tr>
+                  <td class="text-start">Komunikasi (f1769/f1770)</td>
+                  {% for i in range(1,6) %}
+                  <td><input type="radio" class="form-check-input" name="f1769" value="{{ i }}" required></td>
+                  {% endfor %}
+                  {% for i in range(1,6) %}
+                  <td><input type="radio" class="form-check-input" name="f1770" value="{{ i }}" required></td>
+                  {% endfor %}
+                </tr>
+
+                <!-- Kerja sama tim -->
+                <tr>
+                  <td class="text-start">Kerja sama tim (f1771/f1772)</td>
+                  {% for i in range(1,6) %}
+                  <td><input type="radio" class="form-check-input" name="f1771" value="{{ i }}" required></td>
+                  {% endfor %}
+                  {% for i in range(1,6) %}
+                  <td><input type="radio" class="form-check-input" name="f1772" value="{{ i }}" required></td>
+                  {% endfor %}
+                </tr>
+
+                <!-- Pengembangan diri -->
+                <tr>
+                  <td class="text-start">Pengembangan diri (f1773/f1774)</td>
+                  {% for i in range(1,6) %}
+                  <td><input type="radio" class="form-check-input" name="f1773" value="{{ i }}" required></td>
+                  {% endfor %}
+                  {% for i in range(1,6) %}
+                  <td><input type="radio" class="form-check-input" name="f1774" value="{{ i }}" required></td>
+                  {% endfor %}
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <style>
+            /* Mode hp kecil: tampilkan tabel lebih sederhana */
+            @media (max-width: 576px) {
+
+              table.table th,
+              table.table td {
+                font-size: 12px;
+                padding: 0.25rem;
+              }
+
+              table.table th small {
+                display: block;
+                font-size: 10px;
+              }
+            }
+          </style>
+
+          <div class="mb-3">
+            <label class="form-label fw-bold">
+              15. Kapan anda mulai mencari pekerjaan? <br>
+              <small class="text-muted">(Mohon pekerjaan sambilan tidak dimasukkan)</small>
+            </label>
+
+            <!-- Pilihan 1 -->
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="f301" id="f301_1" value="1">
+              <label class="form-check-label" for="f301_1">
+                Kira-kira
+                <input type="number" class="form-control d-inline w-auto ms-2 me-2" id="f302" name="f302"
+                  placeholder="bulan" disabled>
+                bulan sebelum lulus
+                <span class="text-danger">(Wajib diisi jika memilih 1)</span>
+              </label>
+            </div>
+
+            <!-- Pilihan 2 -->
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="f301" id="f301_2" value="2">
+              <label class="form-check-label" for="f301_2">
+                Kira-kira
+                <input type="number" class="form-control d-inline w-auto ms-2 me-2" id="f303" name="f303"
+                  placeholder="bulan" disabled>
+                bulan sesudah lulus
+                <span class="text-danger">(Wajib diisi jika memilih 2)</span>
+              </label>
+            </div>
+
+            <!-- Pilihan 3 -->
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="f301" id="f301_3" value="3">
+              <label class="form-check-label" for="f301_3">
+                Saya tidak mencari kerja
+              </label>
+            </div>
+          </div>
+
+          <!-- Script -->
+          <script>
+            document.addEventListener("DOMContentLoaded", function () {
+              const f301Options = document.querySelectorAll("input[name='f301']");
+              const f302 = document.getElementById("f302");
+              const f303 = document.getElementById("f303");
+
+              function updateFields() {
+                f302.disabled = !document.getElementById("f301_1").checked;
+                f303.disabled = !document.getElementById("f301_2").checked;
+
+                if (f302.disabled) f302.value = "";
+                if (f303.disabled) f303.value = "";
+              }
+
+              f301Options.forEach(opt => opt.addEventListener("change", updateFields));
+            });
+          </script>
+          <div class="mb-3">
+            <label class="form-label fw-bold">
+              16. Bagaimana anda mencari pekerjaan tersebut?
+              <small class="text-muted">(Jawaban bisa lebih dari satu)</small>
+            </label>
+
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="f401" value="1" id="f401">
+              <label class="form-check-label" for="f401">
+                Melalui iklan di koran/majalah, brosur (f401)
+              </label>
+            </div>
+
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="f402" value="1" id="f402">
+              <label class="form-check-label" for="f402">
+                Melamar ke perusahaan tanpa mengetahui lowongan yang ada (f402)
+              </label>
+            </div>
+
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="f403" value="1" id="f403">
+              <label class="form-check-label" for="f403">
+                Pergi ke bursa/pameran kerja (f403)
+              </label>
+            </div>
+
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="f404" value="1" id="f404">
+              <label class="form-check-label" for="f404">
+                Mencari lewat internet/iklan online/milis (f404)
+              </label>
+            </div>
+
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="f405" value="1" id="f405">
+              <label class="form-check-label" for="f405">
+                Dihubungi oleh perusahaan (f405)
+              </label>
+            </div>
+
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="f406" value="1" id="f406">
+              <label class="form-check-label" for="f406">
+                Menghubungi Kemenakertrans (f406)
+              </label>
+            </div>
+
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="f407" value="1" id="f407">
+              <label class="form-check-label" for="f407">
+                Menghubungi agen tenaga kerja komersial/swasta (f407)
+              </label>
+            </div>
+
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="f408" value="1" id="f408">
+              <label class="form-check-label" for="f408">
+                Memperoleh informasi dari pusat/kantor pengembangan karir fakultas/universitas (f408)
+              </label>
+            </div>
+
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="f409" value="1" id="f409">
+              <label class="form-check-label" for="f409">
+                Menghubungi kantor kemahasiswaan/hubungan alumni (f409)
+              </label>
+            </div>
+
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="f410" value="1" id="f410">
+              <label class="form-check-label" for="f410">
+                Membangun jejaring (network) sejak masih kuliah (f410)
+              </label>
+            </div>
+
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="f411" value="1" id="f411">
+              <label class="form-check-label" for="f411">
+                Melalui relasi (misalnya dosen, orang tua, saudara, teman, dll.) (f411)
+              </label>
+            </div>
+
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="f412" value="1" id="f412">
+              <label class="form-check-label" for="f412">
+                Membangun bisnis sendiri (f412)
+              </label>
+            </div>
+
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="f413" value="1" id="f413">
+              <label class="form-check-label" for="f413">
+                Melalui penempatan kerja atau magang (f413)
+              </label>
+            </div>
+
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="f414" value="1" id="f414">
+              <label class="form-check-label" for="f414">
+                Bekerja di tempat yang sama dengan tempat kerja semasa kuliah (f414)
+              </label>
+            </div>
+
+            <div class="form-check d-flex align-items-center">
+              <input class="form-check-input me-2" type="checkbox" id="f415" name="f415" value="1"
+                onchange="toggleF416()">
+              <label class="form-check-label me-2" for="f415">Lainnya (f415)</label>
+              <input type="text" class="form-control form-control-sm w-50" id="f416" name="f416"
+                placeholder="Sebutkan..." style="display:none;">
+            </div>
+          </div>
+
+          <script>
+            function toggleF416() {
+              const f415 = document.getElementById("f415");
+              const f416 = document.getElementById("f416");
+              if (f415.checked) {
+                f416.style.display = "inline-block";
+              } else {
+                f416.style.display = "none";
+                f416.value = "";
+              }
+            }
+          </script>
+
+          <div class="container mt-4">
+            <!-- F6 -->
+            <div class="mb-3">
+              <label for="f6" class="form-label">
+                17. Berapa perusahaan/instansi/institusi yang sudah anda lamar (lewat surat atau e-mail) sebelum anda
+                memperoleh pekerjaan pertama? (f6)
+              </label>
+              <div class="input-group">
+                <input type="number" min="0" class="form-control" id="f6" name="f6" placeholder="Masukkan jumlah"
+                  required>
+                <span class="input-group-text">perusahaan/instansi/institusi</span>
+              </div>
+            </div>
+
+            <!-- F7 -->
+            <div class="mb-3">
+              <label for="f7" class="form-label">
+                18. Berapa banyak perusahaan/instansi/institusi yang merespons lamaran anda? (f7)
+              </label>
+              <div class="input-group">
+                <input type="number" min="0" class="form-control" id="f7" name="f7" placeholder="Masukkan jumlah">
+                <span class="input-group-text">perusahaan/instansi/institusi</span>
+              </div>
+            </div>
+
+            <!-- F7a -->
+            <div class="mb-3">
+              <label for="f7a" class="form-label">
+                19. Berapa banyak perusahaan/instansi/institusi yang mengundang anda untuk wawancara? (f7a)
+              </label>
+              <div class="input-group">
+                <input type="number" min="0" class="form-control" id="f7a" name="f7a" placeholder="Masukkan jumlah">
+                <span class="input-group-text">perusahaan/instansi/institusi</span>
+              </div>
+            </div>
+
+            <!-- F1001 -->
+            <div class="mb-3">
+              <label class="form-label">
+                20. Apakah anda aktif mencari pekerjaan dalam 4 minggu terakhir? Pilihlah satu jawaban (f1001)
+              </label>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="f1001" id="f1001_1" value="1" required>
+                <label class="form-check-label" for="f1001_1">Tidak (1)</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="f1001" id="f1001_2" value="2">
+                <label class="form-check-label" for="f1001_2">Tidak, tapi saya sedang menunggu hasil lamaran kerja
+                  (2)</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="f1001" id="f1001_3" value="3">
+                <label class="form-check-label" for="f1001_3">Ya, saya akan mulai bekerja dalam 2 minggu ke depan
+                  (3)</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="f1001" id="f1001_4" value="4">
+                <label class="form-check-label" for="f1001_4">Ya, tapi saya belum pasti akan bekerja dalam 2 minggu ke
+                  depan (4)</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="f1001" id="f1001_5" value="5">
+                <label class="form-check-label" for="f1001_5">Lainnya (5)</label>
+              </div>
+            </div>
+
+            <!-- F1002 -->
+            <div class="mb-3" id="f1002_wrapper" style="display:none;">
+              <input type="text" class="form-control" id="f1002" name="f1002"
+                placeholder="Jelaskan jika memilih lainnya">
+              <div class="form-text text-danger">* (f1002 Wajib diisi jika f1001 adalah 5)</div>
+            </div>
+          </div>
+
+          <script>
+            // JS untuk menampilkan f1002 jika pilih "Lainnya (5)"
+            document.querySelectorAll('input[name="f1001"]').forEach(radio => {
+              radio.addEventListener('change', function () {
+                if (this.value === "5") {
+                  document.getElementById('f1002_wrapper').style.display = 'block';
+                  document.getElementById('f1002').setAttribute('required', true);
+                } else {
+                  document.getElementById('f1002_wrapper').style.display = 'none';
+                  document.getElementById('f1002').removeAttribute('required');
+                }
+              });
+            });
+          </script>
+          <div class="mb-3">
+            <label class="form-label fw-bold">
+              21. Jika menurut anda pekerjaan anda saat ini tidak sesuai dengan pendidikan anda, mengapa anda
+              mengambilnya?
+              <small class="text-muted">(Jawaban bisa lebih dari satu)</small>
+            </label>
+
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="f1601" id="f1601" value="1">
+              <label class="form-check-label" for="f1601">
+                Pertanyaan tidak sesuai; pekerjaan saya sekarang sudah sesuai dengan pendidikan saya. (f1601)
+              </label>
+            </div>
+
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="f1602" id="f1602" value="1">
+              <label class="form-check-label" for="f1602">Saya belum mendapatkan pekerjaan yang lebih sesuai.
+                (f1602)</label>
+            </div>
+
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="f1603" id="f1603" value="1">
+              <label class="form-check-label" for="f1603">Di pekerjaan ini saya memperoleh prospek karir yang baik.
+                (f1603)</label>
+            </div>
+
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="f1604" id="f1604" value="1">
+              <label class="form-check-label" for="f1604">
+                Saya lebih suka bekerja di area pekerjaan yang tidak ada hubungannya dengan pendidikan saya. (f1604)
+              </label>
+            </div>
+
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="f1605" id="f1605" value="1">
+              <label class="form-check-label" for="f1605">
+                Saya dipromosikan ke posisi yang kurang berhubungan dengan pendidikan saya dibanding posisi sebelumnya.
+                (f1605)
+              </label>
+            </div>
+
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="f1606" id="f1606" value="1">
+              <label class="form-check-label" for="f1606">
+                Saya dapat memperoleh pendapatan yang lebih tinggi di pekerjaan ini. (f1606)
+              </label>
+            </div>
+
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="f1607" id="f1607" value="1">
+              <label class="form-check-label" for="f1607">
+                Pekerjaan saya saat ini lebih aman/terjamin/secure. (f1607)
+              </label>
+            </div>
+
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="f1608" id="f1608" value="1">
+              <label class="form-check-label" for="f1608">Pekerjaan saya saat ini lebih menarik. (f1608)</label>
+            </div>
+
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="f1609" id="f1609" value="1">
+              <label class="form-check-label" for="f1609">
+                Pekerjaan saya saat ini lebih memungkinkan saya mengambil pekerjaan tambahan/jadwal yang fleksibel, dll.
+                (f1609)
+              </label>
+            </div>
+
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="f1610" id="f1610" value="1">
+              <label class="form-check-label" for="f1610">
+                Pekerjaan saya saat ini lokasinya lebih dekat dari rumah saya. (f1610)
+              </label>
+            </div>
+
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="f1611" id="f1611" value="1">
+              <label class="form-check-label" for="f1611">
+                Pekerjaan saya saat ini dapat lebih menjamin kebutuhan keluarga saya. (f1611)
+              </label>
+            </div>
+
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="f1612" id="f1612" value="1">
+              <label class="form-check-label" for="f1612">
+                Pada awal meniti karir ini, saya harus menerima pekerjaan yang tidak berhubungan dengan pendidikan saya.
+                (f1612)
+              </label>
+            </div>
+
+            <div class="form-check d-flex align-items-center">
+              <input class="form-check-input me-2" type="checkbox" name="f1613" id="f1613" value="1"
+                onchange="toggleF1614()">
+              <label class="form-check-label me-2" for="f1613">Lainnya (f1613)</label>
+              <input type="text" class="form-control form-control-sm w-50" name="f1614" id="f1614"
+                placeholder="Sebutkan..." value="0" style="display: none;">
+            </div>
+          </div>
+
+          <script>
+            function toggleF1614() {
+              const checkbox = document.getElementById('f1613');
+              const textbox = document.getElementById('f1614');
+              if (checkbox.checked) {
+                textbox.style.display = 'inline-block';
+                textbox.value = '';
+              } else {
+                textbox.style.display = 'none';
+                textbox.value = '0'; // nilai default jika tidak diisi
+              }
+            }
+          </script>
+
+
+
+
+
+
+
+
+
+
+
+          <div class="d-grid mt-4">
+            <button type="submit" class="btn btn-success btn-lg">Kirim Jawaban</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

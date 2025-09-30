@@ -1,0 +1,35 @@
+{% extends "admin/base_admin.html" %}
+{% block content %}
+<div class="container mt-4">
+  <h3>Detail Mahasiswa</h3>
+
+  <div class="table-responsive mt-3">
+    <table class="table table-bordered table-striped">
+      <thead class="table-dark">
+        <tr>
+          <th>No</th>
+          <th>Nama</th>
+          <th>Kota</th>
+          <th>NIM</th>
+          <th>Email</th>
+          <th>HP</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for mhs in mahasiswa %}
+        <tr>
+          <td>{{ loop.index }}</td>
+          <td>{{ mhs[0] }}</td>
+          <td>{{ mhs[1] }}</td>
+          <td>{{ mhs[2] }}</td>
+          <td>{{ mhs[3] }}</td>
+          <td>{{ mhs[4] }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <a href="{{ url_for('kuesioner.sebaran') }}" class="btn btn-secondary mt-3">Kembali</a>
+</div>
+{% endblock %}

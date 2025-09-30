@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-8">
+    <div class="card shadow-lg">
+      <div class="card-body">
+        <h2 class="card-title mb-3 text-center">Form Kuesioner - Data Diri</h2>
+        <p class="text-muted text-center">Isi data diri terlebih dahulu sebelum menjawab kuesioner.</p>
+
+        <!-- ALERT FLASH -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+              <div class="alert alert-{{ category }} alert-dismissible fade show mt-2" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+
+        <form method="post">
+          <div class="row">
+            <!-- Kode PT -->
+            <div class="col-md-6 mb-3">
+              <label for="kode_pt" class="form-label">Kode PT</label>
+              <input type="text" class="form-control" id="kode_pt" name="kode_pt" value="73162" readonly>
+            </div>
+
+            <!-- Program Studi -->
+            <div class="col-md-6 mb-3">
+              <label for="kode_prodi" class="form-label">Program Studi</label>
+              <select class="form-select" id="kode_prodi" name="kode_prodi" required>
+                <option value="">-- Pilih Program Studi --</option>
+                <option value="13201">KESEHATAN MASYARAKAT (S1)</option>
+                <option value="14201">KEPERAWATAN (S1)</option>
+                <option value="14901">NERS (PROFESI)</option>
+                <option value="15401">KEBIDANAN (D3)</option>
+                <option value="15201">KEBIDANAN (S1)</option>
+                <option value="15903">PROFESI BIDAN (PROFESI)</option>
+                <option value="48401">FARMASI (D3)</option>
+                <option value="48201">FARMASI (S1)</option>
+                <option value="48901">APOTEKER (PROFESI)</option>
+                <option value="13462">PEREKAM DAN INFORMASI KESEHATAN (D3)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="nim" class="form-label">NIM</label>
+              <input type="text" class="form-control" id="nim" name="nim" disabled>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="nama" class="form-label">Nama</label>
+              <input type="text" class="form-control" id="nama" name="nama" required>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label for="hp" class="form-label">No. HP</label>
+              <input type="text" class="form-control" id="hp" name="hp">
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" class="form-control" id="email" name="email">
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-4 mb-3">
+              <label for="tahun_lulus" class="form-label">Tahun Lulus</label>
+              <input type="text" class="form-control" id="tahun_lulus" name="tahun_lulus">
+            </div>
+            <div class="col-md-4 mb-3">
+              <label for="nik" class="form-label">NIK</label>
+              <input type="text" class="form-control" id="nik" name="nik">
+            </div>
+            <div class="col-md-4 mb-3">
+              <label for="npwp" class="form-label">NPWP</label>
+              <input type="text" class="form-control" id="npwp" name="npwp" disabled>
+            </div>
+          </div>
+
+          <div class="d-grid mt-4">
+            <button type="submit" class="btn btn-primary btn-lg">Lanjut ke Pertanyaan</button>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

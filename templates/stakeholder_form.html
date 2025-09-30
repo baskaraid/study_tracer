@@ -1,0 +1,147 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container my-5">
+  <div class="card shadow-lg border-0 rounded-4">
+    <div class="card-header bg-primary text-white rounded-top-4">
+      <h3 class="mb-0"><i class="bi bi-people-fill me-2"></i>Tracer Pengguna Lulusan (StakeHolder)</h3>
+    </div>
+    <div class="card-body p-4">
+
+      <form method="POST">
+
+        <!-- ================== BIODATA ================== -->
+        <h5 class="mb-3 text-primary"><i class="bi bi-person-lines-fill me-2"></i>Biodata Stakeholder</h5>
+        <div class="row g-3">
+          <div class="col-md-6">
+            <label class="form-label fw-semibold">Nama Pengisi</label>
+            <input type="text" class="form-control rounded-3" name="nama_pengisi" placeholder="Masukkan nama anda" required>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label fw-semibold">Posisi Jabatan</label>
+            <input type="text" class="form-control rounded-3" name="posisi_jabatan" placeholder="Misal: Direktur HRD" required>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label fw-semibold">Nama Instansi</label>
+            <input type="text" class="form-control rounded-3" name="nama_instansi" placeholder="Masukkan nama instansi" required>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label fw-semibold">Alamat Instansi</label>
+            <textarea class="form-control rounded-3" name="alamat_instansi" rows="1" placeholder="Alamat lengkap instansi" required></textarea>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label fw-semibold">Nomor HP</label>
+            <input type="text" class="form-control rounded-3" name="no_hp" placeholder="08xxxx" required>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label fw-semibold">Alamat Email</label>
+            <input type="email" class="form-control rounded-3" name="email" placeholder="contoh@email.com" required>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label fw-semibold">Nama Alumni STIKES BHM yang Dinilai</label>
+            <input type="text" class="form-control rounded-3" name="nama_alumni" placeholder="Nama alumni" required>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label fw-semibold">Asal Program Studi</label>
+            <select class="form-select rounded-3" name="prodi" required>
+              <option value="">-- Pilih Program Studi --</option>
+              <option>Ners</option>
+              <option>DIII Kebidanan</option>
+              <option>DIII Farmasi</option>
+              <option>DIII Rekam Medis</option>
+              <option>S1 Farmasi</option>
+              <option>S1 Kesehatan Masyarakat</option>
+              <option>Yang lain</option>
+            </select>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label fw-semibold">Bidang Pekerjaan</label>
+            <select class="form-select rounded-3" name="bidang_pekerjaan" required>
+              <option value="">-- Pilih Bidang Pekerjaan --</option>
+              <option>Rumah Sakit</option>
+              <option>Puskesmas/Klinik</option>
+              <option>Bidan Praktek Swasta/Bidan Delima</option>
+              <option>Perusahaan</option>
+              <option>Industri dan Perdagangan</option>
+              <option>Institusi Pendidikan</option>
+              <option>Apotik</option>
+              <option>Yang lain</option>
+            </select>
+          </div>
+        </div>
+
+        <hr class="my-4">
+
+        <!-- ================== PENILAIAN ================== -->
+        <h5 class="mb-3 text-primary"><i class="bi bi-bar-chart-fill me-2"></i>Penilaian Kompetensi Lulusan</h5>
+
+        {% set aspek = [
+          ("integritas", "Integritas (Etika, Moral, Spiritual, Sosial)"),
+          ("penguasaan_konsep", "Penguasaan konsep, teori, metode, dan/atau falsafah bidang ilmu"),
+          ("keterampilan_umum", "Keterampilan kerja secara umum"),
+          ("keterampilan_khusus", "Keterampilan kerja secara khusus"),
+          ("bahasa_asing", "Kemampuan berbahasa asing"),
+          ("teknologi_informasi", "Pemanfaatan teknologi informasi"),
+          ("komunikasi", "Kemampuan berkomunikasi"),
+          ("kerjasama_tim", "Keterampilan kerjasama tim"),
+          ("pengembangan_diri", "Kemampuan pengembangan diri"),
+          ("kompetensi_lulusan", "Kompetensi lulusan STIKES BHM")
+        ] %}
+
+        {% for key, label in aspek %}
+        <div class="mb-3 p-3 border rounded-3">
+          <label class="form-label fw-semibold">{{ label }}</label>
+          <div class="d-flex align-items-center justify-content-between">
+            <span class="small text-muted">Kurang</span>
+            <div class="d-flex gap-3">
+              {% for i in range(1,5) %}
+              <div class="form-check form-check-inline">
+                <input type="radio" class="form-check-input" name="{{ key }}" value="{{ i }}" required>
+                <label class="form-check-label">{{ i }}</label>
+              </div>
+              {% endfor %}
+            </div>
+            <span class="small text-muted">Sangat Baik</span>
+          </div>
+        </div>
+        {% endfor %}
+
+        <div class="mb-3">
+          <label class="form-label fw-semibold">Saran untuk Lulusan/Alumni STIKES BHM</label>
+          <textarea class="form-control rounded-3" name="saran" rows="3" placeholder="Tulis saran anda..." required></textarea>
+        </div>
+
+        <div class="text-end">
+          <button type="reset" class="btn btn-light border me-2">Reset</button>
+          <button type="submit" class="btn btn-success px-4"><i class="bi bi-save me-2"></i>Simpan</button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>
+
+<!-- ================== ALERT FLASH ================== -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      {% for category, message in messages %}
+        Swal.fire({
+          icon: "{{ 'success' if category == 'success' else 'info' }}",
+          title: "{{ message }}",
+          confirmButtonColor: '#3085d6',
+          confirmButtonText: 'OK'
+        });
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+</script>
+{% endblock %}

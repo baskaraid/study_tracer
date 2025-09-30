@@ -1,0 +1,49 @@
+{% extends "admin/base_admin.html" %}
+{% block content %}
+<h2>Dashboard Tracer Study (Admin)</h2>
+<p>Selamat datang, {{ session['nama'] }} (Admin)</p>
+
+<!-- Mapping Prodi -->
+{% set prodi_map = {
+13201: "Kesehatan Masyarakat (S1)",
+14201: "Keperawatan (S1)",
+14901: "Ners (Profesi)",
+15401: "Kebidanan (D3)",
+15201: "Kebidanan (S1)",
+15903: "Profesi Bidan (Profesi)",
+48401: "Farmasi (D3)",
+48201: "Farmasi (S1)",
+48901: "Apoteker (Profesi)",
+13462: "Perekam & Informasi Kesehatan (D3)"
+} %}
+
+<!-- Card Ringkasan -->
+<div class="row mb-4">
+    <div class="col-md-4">
+        <div class="card text-white bg-primary shadow">
+            <div class="card-body">
+                <h5 class="card-title">Total Data Masuk</h5>
+                <h3>{{ data|length }}</h3>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Card per Prodi -->
+<div class="row">
+    {% for row in statistik %}
+    <div class="col-md-4 mb-3">
+        <div class="card text-white 
+      {% if row.kode_prodi == 13201 %} bg-primary
+      {% elif row.kode_prodi == 14201 %} bg-success
+      {% elif row.kode_prodi == 14901 %} bg-danger
+      {% else %} bg-secondary {% endif %}">
+            <div class="card-body">
+                <h5 class="card-title">{{ prodi_map.get(row.kode_prodi, "Prodi Tidak Dikenal") }}</h5>
+                <p class="card-text display-6">{{ row.jumlah }}</p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

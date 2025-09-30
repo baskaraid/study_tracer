@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="text-center mt-5">
+  <h2>🎉 Terima Kasih!</h2>
+  <p>Kuesioner Anda sudah berhasil disimpan.</p>
+  <a href="{{ url_for('kuesioner.isi') }}" class="btn btn-primary mt-3">Isi Lagi</a>
+  <a href="{{ url_for('auth.login') }}" class="btn btn-secondary mt-3">Kembali ke Login Dosen</a>
+</div>
+{% endblock %}

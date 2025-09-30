@@ -1,0 +1,71 @@
+{% extends "admin/base_admin.html" %}
+{% block content %}
+<h2>Dashboard Tracer Study (Admin)</h2>
+<p>Selamat datang, {{ session['nama'] }} (Admin)</p>
+
+<!-- Tabel Data -->
+<div class="table-responsive" style="max-height: 500px; overflow-y: auto;">
+    <table id="tabelTracer" class="table table-striped table-hover align-middle">
+        <thead class="table-dark">
+            <tr>
+                <th>No</th>
+                <th>Kode PT</th>
+                <th>Program Studi</th>
+                <th>NIM</th>
+                <th>Nama</th>
+                <th>HP</th>
+                <th>Email</th>
+                <th>Tahun Lulus</th>
+                <th>NIK</th>
+                <th>NPWP</th>
+                <th>F8</th>
+                <th>F502</th>
+                <th>F505</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in data %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ row.kode_pt }}</td>
+                <td>{{ row.kode_prodi }}</td>
+                <td>{{ row.nim }}</td>
+                <td>{{ row.nama }}</td>
+                <td>{{ row.hp }}</td>
+                <td>{{ row.email }}</td>
+                <td>{{ row.tahun_lulus }}</td>
+                <td>{{ row.nik }}</td>
+                <td>{{ row.npwp }}</td>
+                <td>{{ row.f8 }}</td>
+                <td>{{ row.f502 }}</td>
+                <td>{{ row.f505 }}</td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="13" class="text-center">Belum ada data kuesioner yang masuk</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<a href="{{ url_for('auth.logout') }}" class="btn btn-danger mt-3">Logout</a>
+
+<!-- JS DataTables -->
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#tabelTracer').DataTable({
+            "pageLength": 10,
+            "lengthChange": false,
+            "scrollY": "300px",
+            "scrollCollapse": true,
+            "paging": true
+        });
+    });
+</script>
+{% endblock %}

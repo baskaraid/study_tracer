@@ -1,0 +1,10 @@
+{% extends "admin/base_admin.html" %}
+{% block content %}
+<div class="container mt-4">
+  <h3>Unduh Data Kuesioner</h3>
+  <p>Silakan klik tombol di bawah ini untuk mengunduh semua data responden dalam format Excel.</p>
+  <a href="{{ url_for('kuesioner.unduh_data_download') }}" class="btn btn-success">
+    📥 Unduh Data (Excel)
+  </a>
+</div>
+{% endblock %}

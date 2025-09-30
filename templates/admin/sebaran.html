@@ -1,0 +1,176 @@
+{% extends "admin/base_admin.html" %}
+{% block content %}
+<div class="container mt-4">
+  <h3>Sebaran Mahasiswa</h3>
+
+  <!-- ================== Chart Provinsi ================== -->
+  <div class="d-flex justify-content-center mb-4">
+    <div class="card shadow-sm" style="max-width: 800px; width: 100%;">
+      <div class="card-body">
+        <canvas id="provinsiChart" height="120"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <!-- ================== Tabel Provinsi ================== -->
+<div class="col-md-7">
+  <div class="card shadow-sm mb-3">
+    <div class="card-body">
+      <h4 class="card-title">Rekap Mahasiswa per Provinsi</h4>
+      <div class="table-responsive">
+        <table id="tabelMahasiswa" class="table table-bordered table-striped">
+          <thead class="table-dark">
+            <tr>
+              <th>No</th>
+              <th>Provinsi</th>
+              <th>Jumlah Mahasiswa</th>
+              <th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for row in rows %}
+            <tr>
+              <td>{{ loop.index }}</td>
+              <td>{{ row[0] }}</td>
+              <td>{{ row[1] }}</td>
+              <td>
+                <a href="{{ url_for('kuesioner.detail_sebaran', kode_prov=row[2]) }}" class="btn btn-sm btn-info">Detail</a>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    <!-- ================== Pie Chart Pendapatan ================== -->
+<!-- ================== Pie Chart Pendapatan ================== -->
+<div class="col-md-5">
+  <div class="card shadow-sm mb-3">
+    <div class="card-body">
+      <h4 class="card-title text-center">Distribusi Pendapatan Mahasiswa</h4>
+      <div class="d-flex justify-content-center">
+        <canvas id="pendapatanChart" style="max-width:300px; max-height:300px;"></canvas>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  </div>
+
+<!-- ================== Chart f502 + Tabel dalam 1 Baris ================== -->
+<div class="mt-5">
+  <h4>Waktu Mendapatkan Pekerjaan Pertama (f502)</h4>
+  <div class="row">
+    <!-- Chart -->
+    <div class="col-md-6">
+      <div class="card shadow-sm mb-3">
+        <div class="card-body text-center">
+          <canvas id="f502Chart" height="200"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tabel -->
+    <div class="col-md-6">
+      <div class="card shadow-sm mb-3">
+        <div class="card-body">
+          <div class="table-responsive">
+            <table id="tabelF502" class="table table-bordered table-striped">
+              <thead class="table-dark">
+                <tr>
+                  <th>No</th>
+                  <th>NIM</th>
+                  <th>Nama</th>
+                  <th>Bulan</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for row in f502_rows %}
+                <tr>
+                  <td>{{ loop.index }}</td>
+                  <td>{{ row[0] }}</td>
+                  <td>{{ row[1] }}</td>
+                  <td>bulan ke {{ row[2] }}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<!-- ================== Script Chart.js ================== -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  // Provinsi Chart
+  const ctx1 = document.getElementById('provinsiChart').getContext('2d');
+  new Chart(ctx1, {
+    type: 'bar',
+    data: {
+      labels: {{ prov_labels|tojson }},
+      datasets: [{
+        label: 'Jumlah Mahasiswa',
+        data: {{ prov_data|tojson }},
+        backgroundColor: 'rgba(54, 162, 235, 0.6)',
+        borderColor: 'rgba(54, 162, 235, 1)',
+        borderWidth: 1
+      }]
+    },
+    options: { responsive: true, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true } } }
+  });
+
+  // Pendapatan Chart
+  const pendapatanData = {{ pendapatan_data|tojson }};
+  const ctx2 = document.getElementById('pendapatanChart').getContext('2d');
+  new Chart(ctx2, {
+    type: 'pie',
+    data: {
+      labels: ["< 1.5 juta", "1.5 - 3 juta", "> 3 juta"],
+      datasets: [{
+        data: [pendapatanData.bawah_1_5, pendapatanData.satu_5_3, pendapatanData.di_atas_3],
+        backgroundColor: ['#FF6384', '#FFCE56', '#4BC0C0']
+      }]
+    },
+    options: { responsive: true, plugins: { legend: { position: 'bottom' } } }
+  });
+
+  // f502 Chart
+  const f502Data = {{ kategori_f502|tojson }};
+  const ctx3 = document.getElementById('f502Chart').getContext('2d');
+  new Chart(ctx3, {
+    type: 'bar',
+    data: {
+      labels: ["≤ 3 Bulan (Hijau)", "6–12 Bulan (Kuning)", "> 12 Bulan (Merah)"],
+      datasets: [{
+        label: 'Jumlah Mahasiswa',
+        data: [f502Data.hijau, f502Data.kuning, f502Data.merah],
+        backgroundColor: ['green', 'yellow', 'red']
+      }]
+    },
+    options: { responsive: true, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true } } }
+  });
+</script>
+
+<!-- ================== DataTables ================== -->
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+<script>
+  $(document).ready(function () {
+    $('#tabelMahasiswa').DataTable({ pageLength: 5, lengthChange: false });
+    $('#tabelF502').DataTable({ pageLength: 5, lengthChange: false });
+  });
+</script>
+{% endblock %}
