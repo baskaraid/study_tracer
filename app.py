@@ -20,9 +20,9 @@ def home():
 def page_not_found(e):
     return render_template("404.html"), 404
 
-# ✅ untuk server WSGI (PythonAnywhere)
+
+# ✅ Tambahkan baris ini supaya WSGI bisa import
 application = app
 
-# ✅ tetap bisa jalan di lokal
 if __name__ == "__main__":
     app.run(debug=True)
